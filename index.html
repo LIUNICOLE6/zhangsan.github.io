@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMFNEAT - Comfort is Basic</title>
+    
+    <!-- 1. 引入 Google Fonts (Playfair Display 用于标题, Inter 用于正文) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- 2. 引入 Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 3. 配置 Tailwind 主题颜色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1F4E79',   // 图片中的深海蓝
+                            sand: '#FDF6E9',   // Hero区域的沙滩米色
+                            gray: '#F3F4F6',   // 背景灰
+                            red: '#ED1C24',    // 促销红标签
+                            dark: '#333333'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 自定义 CSS 用于平滑滚动和细节微调 */
+        html { scroll-behavior: smooth; }
+        .hover-zoom-img { transition: transform 0.7s ease; }
+        .group:hover .hover-zoom-img { transform: scale(1.05); }
+        
+        /* 模拟图片中的渐变遮罩效果 */
+        .hero-gradient {
+            background: linear-gradient(to right, #FDF6E9 30%, rgba(253, 246, 233, 0.8) 50%, transparent 100%);
+        }
+        
+        /* 移动端适配 Hero 渐变 */
+        @media (max-width: 768px) {
+            .hero-gradient {
+                background: linear-gradient(to bottom, #FDF6E9 60%, rgba(253, 246, 233, 0.5) 100%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+
+    <!-- Section 1: 顶部 Banner (海景 + Logo) -->
+    <header class="relative w-full h-32 md:h-48 overflow-hidden">
+        <!-- 背景图 -->
+        <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=2071&auto=format&fit=crop" 
+             alt="Ocean Banner" 
+             class="absolute inset-0 w-full h-full object-cover opacity-90">
+        
+        <!-- 居中文字 -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+            <h1 class="text-3xl md:text-5xl font-bold tracking-[0.2em] text-brand-blue uppercase font-sans drop-shadow-sm">
+                COMFNEAT
+            </h1>
+            <p class="text-brand-blue font-serif italic text-lg md:text-xl mt-1 opacity-90">
+                Comfort is Basic
+            </p>
+        </div>
+    </header>
+
+    <!-- Section 2: 导航栏 -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14 md:h-16">
+                <!-- 左侧 Logo (Mini) -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <span class="font-bold text-brand-blue tracking-widest text-sm md:text-base">COMFNEAT</span>
+                </div>
+
+                <!-- 中间链接 (Desktop) -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-xs font-semibold text-brand-blue border-b-2 border-brand-blue uppercase tracking-wide">Home</a>
+                    <a href="#" class="text-xs font-semibold text-gray-500 hover:text-brand-blue transition-colors uppercase tracking-wide">Men</a>
+                    <a href="#" class="text-xs font-semibold text-gray-500 hover:text-brand-blue transition-colors uppercase tracking-wide">Women</a>
+                    <a href="#" class="text-xs font-semibold text-gray-500 hover:text-brand-blue transition-colors uppercase tracking-wide">New Arrivals</a>
+                    <a href="#" class="text-xs font-semibold text-orange-500 hover:text-orange-600 transition-colors uppercase tracking-wide">Cotton Collection</a>
+                </div>
+
+                <!-- 右侧搜索 -->
+                <div class="flex items-center">
+                    <div class="relative group">
+                        <input type="text" placeholder="Search all Comfneat" 
+                               class="text-xs border border-gray-300 px-3 py-1.5 w-32 md:w-48 transition-all focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/20 bg-gray-50">
+                        <svg class="w-3.5 h-3.5 text-gray-400 absolute right-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 3: Hero 区域 (米色背景 + 浪花) -->
+    <section class="relative bg-brand-sand min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden">
+        <!-- 背景图片 (右侧显示) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Sea Waves" 
+                 class="w-full h-full object-cover object-center md:object-right">
+        </div>
+
+        <!-- 渐变层 (让文字清晰可见) -->
+        <div class="absolute inset-0 z-10 hero-gradient"></div>
+
+        <!-- 文字内容 -->
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-10 pb-20 md:py-0">
+            <div class="max-w-xl">
+                <h2 class="font-serif text-4xl md:text-6xl text-brand-blue leading-tight">
+                    <span class="block text-gray-500 font-sans text-xl md:text-2xl font-normal mb-2 opacity-80">Slip into</span>
+                    <span class="font-bold drop-shadow-sm">COMFNEAT</span>
+                    <span class="block text-gray-500 font-sans text-xl md:text-2xl font-normal mt-3 opacity-80">for everyday ease</span>
+                </h2>
+                <p class="mt-6 text-gray-600 text-sm md:text-base leading-relaxed max-w-md font-light">
+                    Your comfort is our priority with our underwear designed for the softest, most breathable experience. Feel the difference that sets us apart.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: 四格分类 (Hover Effect) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+            <!-- Item 1 -->
+            <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-gray-100">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1780&auto=format&fit=crop" 
+                     alt="Men Top" class="w-full h-full object-cover hover-zoom-img">
+                <div class="absolute bottom-4 left-0 bg-white/95 backdrop-blur px-3 py-2 flex items-center shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider">Men's Tops</span>
+                    <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-gray-100">
+                <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=1887&auto=format&fit=crop" 
+                     alt="Men Underwear" class="w-full h-full object-cover hover-zoom-img object-top">
+                <div class="absolute bottom-4 left-0 bg-white/95 backdrop-blur px-3 py-2 flex items-center shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider">Men's Underwear</span>
+                    <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-gray-100">
+                <img src="https://images.unsplash.com/photo-1617019114583-affb43d14350?q=80&w=1887&auto=format&fit=crop" 
+                     alt="Women Top" class="w-full h-full object-cover hover-zoom-img">
+                <div class="absolute bottom-4 left-0 bg-white/95 backdrop-blur px-3 py-2 flex items-center shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider">Women's Tops</span>
+                    <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-gray-100">
+                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1887&auto=format&fit=crop" 
+                     alt="Women Underwear" class="w-full h-full object-cover hover-zoom-img">
+                <div class="absolute bottom-4 left-0 bg-white/95 backdrop-blur px-3 py-2 flex items-center shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider">Women's Underwear</span>
+                    <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: 分割线标题 -->
+    <div class="w-full bg-brand-gray py-8 text-center border-t border-gray-200">
+        <h3 class="text-2xl md:text-3xl font-serif font-bold text-gray-600 tracking-wide">Comfneat Best Sellers</h3>
+    </div>
+
+    <!-- Section 6: 畅销榜单 (Bento Grid) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 bg-gray-50/50 pt-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-auto lg:h-[650px]">
+            
+            <!-- Left Column: TOP 1 (Big Feature) -->
+            <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+                <!-- Background Image (Man Grey Vest) -->
+                <img src="https://images.unsplash.com/photo-1506634572416-48cdfe530110?q=80&w=1585&auto=format&fit=crop" 
+                     alt="Top 1 Product" 
+                     class="absolute bottom-0 right-0 w-[90%] md:w-[75%] lg:w-[85%] h-auto object-cover z-0 hover-zoom-img mix-blend-multiply opacity-90">
+                
+                <!-- Content Overlay -->
+                <div class="relative z-10 p-8 md:p-12 h-full flex flex-col justify-between items-start">
+                    <div>
+                        <span class="bg-brand-red text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-widest mb-4 inline-block shadow-sm">Top 1</span>
+                        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue uppercase leading-none mb-3 font-sans">
+                            Snug Fit<br>A-Shirts
+                        </h2>
+                        <p class="text-brand-blue/70 text-sm font-medium tracking-wide">Ultra Stretchy & Extra Soft</p>
+                    </div>
+
+                    <!-- Functional Icons -->
+                    <div class="mt-8 mb-8 space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full border border-brand-blue flex items-center justify-center bg-white/50 backdrop-blur">
+                                <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <span class="text-xs text-brand-blue font-bold uppercase">Extra Soft</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full border border-brand-blue flex items-center justify-center bg-white/50 backdrop-blur">
+                                <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                            </div>
+                            <span class="text-xs text-brand-blue font-bold uppercase">Stretchy</span>
+                        </div>
+                    </div>
+
+                    <button class="bg-white text-brand-blue border border-brand-blue/10 px-6 py-2.5 text-xs md:text-sm font-bold uppercase hover:bg-brand-blue hover:text-white transition-all shadow-sm flex items-center group/btn">
+                        Shop Now 
+                        <svg class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: TOP 2 & 3 (Stacked) -->
+            <div class="flex flex-col gap-6 h-full">
+                
+                <!-- Top 2 -->
+                <div class="flex-1 bg-white border border-gray-100 flex relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+                    <!-- Text Side -->
+                    <div class="w-1/2 p-6 md:p-10 flex flex-col justify-center z-10 bg-white/80 backdrop-blur-sm lg:bg-transparent">
+                        <span class="bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 uppercase mb-3 w-max">Top 2</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-blue mb-2 leading-tight">Slim Fit<br>Must-Have Tanks</h3>
+                        <ul class="text-[10px] md:text-xs text-gray-500 space-y-1 list-disc list-inside mt-2">
+                            <li>Soft Stretchy Fabric</li>
+                            <li>Perfect for Layering</li>
+                        </ul>
+                    </div>
+                    <!-- Image Side -->
+                    <div class="absolute right-0 top-0 w-1/2 h-full">
+                        <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?q=80&w=1974&auto=format&fit=crop" 
+                             class="w-full h-full object-cover object-top hover-zoom-img" alt="Top 2 Woman">
+                    </div>
+                </div>
+
+                <!-- Top 3 -->
+                <div class="flex-1 bg-white border border-gray-100 flex relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+                     <!-- Image Side (Left for variety or keep layout) - Replicating Image: Image is left-ish/center -->
+                    <div class="absolute left-0 top-0 w-1/2 h-full">
+                         <img src="https://images.unsplash.com/photo-1512353087810-25dfcd100962?q=80&w=1974&auto=format&fit=crop" 
+                              class="w-full h-full object-cover object-top hover-zoom-img" alt="Top 3 Man">
+                    </div>
+                    <!-- Text Side -->
+                    <div class="w-1/2 ml-auto p-6 md:p-10 flex flex-col justify-center z-10 bg-white/80 backdrop-blur-sm lg:bg-transparent pl-8">
+                        <span class="bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 uppercase mb-3 w-max">Top 3</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-blue mb-2 leading-tight">Extra Soft<br>Boxer Briefs</h3>
+                        <ul class="text-[10px] md:text-xs text-gray-500 space-y-1 list-disc list-inside mt-2">
+                            <li>4-Way Stretch Fabric</li>
+                            <li>Second Skin Feel</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400 font-medium">
+            &copy; 2024 COMFNEAT Personal Style Page. Generated by Gemini 3. 
+        </p>
+    </footer>
+
+</body>
+</html>
